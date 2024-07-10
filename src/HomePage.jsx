@@ -17,7 +17,7 @@ function HomePage() {
                   className="h-16 mr-2 transform transition-transform duration-300 ease-in-out hover:scale-110"
                 />
                 <div className="text-left">
-                  <div className="text-lg font-bold leading-none">OUJD</div>
+                  <div className="text-lg font-bold leading-none">OUJDA</div>
                   <div className="border-t border-blue-900 my-1"></div>
                   <div className="text-xs font-medium leading-none">CENTRE HOSPITALIER UNIVERSITAIRE</div>
                 </div>
