@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Socials from './Socials';
+import chuVideo from './assets/chu-video.mp4';
 
 function HomePage() {
   const [videoSrc, setVideoSrc] = useState('');
