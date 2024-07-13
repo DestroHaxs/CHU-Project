@@ -1,4 +1,3 @@
-// src/Navbar.jsx
 import React from 'react';
 import dropdownIcon from './assets/dropdownmenu.svg'; // Import the SVG icon
 import chuLogo from './assets/chu_logo.png'; // Import the logo image
@@ -29,50 +28,42 @@ function Navbar() {
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
-                {/* Dropdown menu */}
               </a>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg hidden group-hover:block">
-              <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">QUI SOMMES NOUS ?</a></li>
-              <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">ORGANISMES</a></li>
-              <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">SOINS & SPECIALITES</a></li>
-            </ul>
-              
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out">
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">QUI SOMMES NOUS ?</a></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">ORGANISMES</a></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">SOINS & SPECIALITES</a></li>
+              </ul>
             </li>
             <li className="relative group">
               <a href="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
                 PATIENTS & VISITEURS
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />                </svg>
-              </a>
-              {/* Dropdown menu */}
-            <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg hidden group-hover:block">
-              <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">CONSULTATION</a></li>
-              <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">VISITER UN PATIENT</a></li>
-              <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">CHARTE DU PATIENT</a></li>
-            </ul>
-          
-            </li>
-            <li className="relative group">
-              <a href="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
-              STAGE & RECRUTEMENT
-                <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
-                {/* Dropdown menu */}
               </a>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg hidden group-hover:block">
-                <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">DEMANDE DE STAGE</a></li>
-                <li className="px-4 py-2 hover:bg-blue-700"><a href="#" className="text-white">DEMANDE DE TRAVAIL</a></li>
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out">
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">CONSULTATION</a></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">VISITER UN PATIENT</a></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">CHARTE DU PATIENT</a></li>
               </ul>
             </li>
             <li className="relative group">
               <a href="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
-                NOS COMITES
+                STAGE & RECRUTEMENT
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </a>
-              {/* Dropdown menu */}
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out">
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">DEMANDE DE STAGE</a></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">DEMANDE DE TRAVAIL</a></li>
+              </ul>
+            </li>
+            <li className="relative group">
+              <button href="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
+                NOS COMITES
+              </button>
             </li>
           </ul>
           <div className="relative">
