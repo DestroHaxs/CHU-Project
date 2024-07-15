@@ -1,10 +1,10 @@
-import React from 'react';
-import dropdownIcon from './assets/dropdownmenu.svg'; // Import the SVG icon
-import chuLogo from './assets/chu_logo.png'; // Import the logo image
+import React, { forwardRef } from 'react';
+import dropdownIcon from './assets/dropdownmenu.svg';
+import chuLogo from './assets/chu_logo.png';
 
-function Navbar() {
+const Navbar = forwardRef((props, ref) => {
   return (
-    <div className="bg-white text-blue-900 py-2 shadow-md">
+    <div ref={ref} className="bg-white text-blue-900 py-2 shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-0">
         <div className="flex items-center space-x-4">
           <a href="/" className="flex items-center">
@@ -20,16 +20,16 @@ function Navbar() {
             </div>
           </a>
         </div>
-        <nav className="flex items-center ml-auto">
+        <nav className="flex items-center ml-auto relative z-50">
           <ul className="flex space-x-12 mr-4">
             <li className="relative group">
               <a href="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
                 LE CHU
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clipRule="evenodd" />
                 </svg>
               </a>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out">
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">QUI SOMMES NOUS ?</a></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">ORGANISMES</a></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">SOINS & SPECIALITES</a></li>
@@ -39,10 +39,10 @@ function Navbar() {
               <a href="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
                 PATIENTS & VISITEURS
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clipRule="evenodd" />
                 </svg>
               </a>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out">
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">CONSULTATION</a></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">VISITER UN PATIENT</a></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">CHARTE DU PATIENT</a></li>
@@ -52,10 +52,10 @@ function Navbar() {
               <a href="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
                 STAGE & RECRUTEMENT
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clipRule="evenodd" />
                 </svg>
               </a>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out">
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">DEMANDE DE STAGE</a></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><a href="#" className="text-white">DEMANDE DE TRAVAIL</a></li>
               </ul>
@@ -66,7 +66,7 @@ function Navbar() {
               </button>
             </li>
           </ul>
-          <div className="relative">
+          <div className="relative z-50">
             <input 
               type="text" 
               className="px-4 py-2 rounded text-black" 
@@ -82,6 +82,6 @@ function Navbar() {
       </div>
     </div>
   );
-}
+});
 
 export default Navbar;
