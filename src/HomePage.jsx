@@ -1,8 +1,9 @@
+// HomePage.jsx
 import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Socials from './Socials';
 import Footer from './Footer';
-import { FaArrowRight, FaUserMd, FaProcedures, FaHospitalAlt, FaBriefcase } from 'react-icons/fa'; 
+import { FaArrowRight, FaUserMd, FaProcedures, FaHospitalAlt, FaBriefcase } from 'react-icons/fa';
 import chuVideo from './assets/chu-video.mp4';
 import travauxImg from './assets/travaux.jpg';
 import resultsImg from './assets/results.jpg';
@@ -13,7 +14,7 @@ import event3Img from './assets/event3.jpeg';
 
 function HomePage() {
   const [videoSrc, setVideoSrc] = useState('');
-  const [currentSection, setCurrentSection] = useState('actualites'); 
+  const [currentSection, setCurrentSection] = useState('actualites');
 
   useEffect(() => {
     setVideoSrc(chuVideo);
@@ -26,7 +27,7 @@ function HomePage() {
         <Socials />
         <div className="flex flex-1">
           <div className="w-1/3 flex items-center justify-center bg-white">
-            <div className="text-center p-6 transform translate-x-14"> 
+            <div className="text-center p-6 transform translate-x-14">
               <h1 className="text-2xl font-bold text-blue-900 mb-4 animate-fadeIn">
                 Bienvenue sur le site du
               </h1>
@@ -34,7 +35,7 @@ function HomePage() {
                 CHU de Oujda, votre hôpital public...
               </h2>
               <button className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center ml-12">
-                Découvrez le CHU <FaArrowRight className="ml-2" /> 
+                Découvrez le CHU <FaArrowRight className="ml-2" />
               </button>
             </div>
           </div>
@@ -79,7 +80,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-      
       
       <div className="border-t-2 border-blue-100 my-12 mx-auto w-full max-w-6xl"></div>
       
