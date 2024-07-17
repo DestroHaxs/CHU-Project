@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import { NavLink } from 'react-router-dom';   
 import Socials from './Socials';
 import Footer from './Footer';
 
@@ -12,7 +13,6 @@ function Consultation() {
         <h1 className="text-3xl font-bold mb-4 text-blue-900 text-left">Se rendre en consultation</h1>
         <div className="space-y-8">
           <div>
-            <h2 className="text-xl font-semibold text-blue-700 mb-2">Prendre un rendez-vous</h2>
             <p>La première étape pour bénéficier d'une consultation est de se présenter à l'accueil du Centre de Consultations pour prendre un rendez-vous.</p>
             <p className="mt-4">Les pièces à fournir sont comme suit :</p>
             <ul className="list-disc list-inside mt-2">
@@ -35,8 +35,15 @@ function Consultation() {
               </ul>
             </ul>
             <p className="mt-4">Un bon de rendez-vous est délivré au patient.</p>
+            <li className="font-semibold mt-4">Pour prendre un RDV en ligne :</li>
+            <div className="mt-2">
+                <NavLink to="/rdv">
+                  <button className="text-xl font-semibold text-white bg-blue-700 hover:bg-blue-900 py-2 px-4 rounded mb-2 transition-colors duration-300">
+                    Prendre un rendez-vous en ligne
+                  </button>
+                </NavLink>
+                </div>
           </div>
-
           <div>
             <h2 className="text-xl font-semibold text-blue-700 mb-2">Le jour de la consultation</h2>
             <p>Le jour de la consultation, quatre étapes sont à franchir par le patient :</p>

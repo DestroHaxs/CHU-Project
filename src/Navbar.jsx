@@ -32,7 +32,7 @@ const Navbar = forwardRef((props, ref) => {
               <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="#" className="text-white">QUI SOMMES NOUS ?</NavLink></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/organigramme" className="text-white">ORGANIGRAMME</NavLink></li>
-                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="#" className="text-white">SOINS & SPECIALITES</NavLink></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/soins" className="text-white">SOINS & SPECIALITES</NavLink></li>
               </ul>
             </li>
             <li className="relative group">
@@ -57,7 +57,7 @@ const Navbar = forwardRef((props, ref) => {
               </NavLink>
               <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/stage" className="text-white">DEMANDE DE STAGE</NavLink></li>
-                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/job" className="text-white">DEMANDE DE TRAVAIL</NavLink></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/job" className="text-white">DEMANDE D'EMPLOI</NavLink></li>
               </ul>
             </li>
             <li className="relative group">

@@ -7,9 +7,9 @@ import visiteImg from './assets/Visite.png'; // Assurez-vous que le chemin vers 
 function VisiterPatient() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      <Navbar />
+    <Navbar />
       <Socials />
-      <div className="container mx-auto px-6 py-4 mt-20 flex-grow">
+    <div className="container mx-auto px-6 py-4 mt-20 flex-grow">
         <h1 className="text-3xl font-bold mb-4 text-blue-900 text-left">Visiter un patient</h1>
         <div className="flex flex-col lg:flex-row justify-between items-center my-8">
           <div className="lg:w-1/2">

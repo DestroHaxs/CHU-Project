@@ -10,6 +10,8 @@ import ChartePatient from './ChartePatient';
 import { UserContext } from './UserContext';
 import  Consultation from './Consultation';
 import VisiterPatient from './VisiterPatient';
+import SoinsSpecialites from './SoinsSpecialites';
+import RdvOnline from './RdvOnline';
 
 function App() {
   const location = useLocation();
@@ -27,6 +29,9 @@ function App() {
             <Route path="/chartepatient" element={<ChartePatient />} />
             <Route path="/Consultation" element={<Consultation />} />
             <Route path="/VisiterPatient" element={<VisiterPatient />} />
+            <Route path="/soins" element={<SoinsSpecialites />} />
+            <Route path="/rdv" element={<RdvOnline />} />
+
           </Routes>
         </CSSTransition>
       </TransitionGroup>
