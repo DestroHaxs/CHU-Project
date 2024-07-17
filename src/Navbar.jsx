@@ -23,39 +23,39 @@ const Navbar = forwardRef((props, ref) => {
         <nav className="flex items-center ml-auto relative z-50">
           <ul className="flex space-x-12 mr-4">
             <li className="relative group">
-              <NavLink to="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
+              <div className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out cursor-pointer">
                 LE CHU
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clipRule="evenodd" />
                 </svg>
-              </NavLink>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
+              </div>
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transform group-hover:translate-y-0 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="#" className="text-white">QUI SOMMES NOUS ?</NavLink></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/organigramme" className="text-white">ORGANIGRAMME</NavLink></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="#" className="text-white">SOINS & SPECIALITES</NavLink></li>
               </ul>
             </li>
             <li className="relative group">
-              <NavLink to="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
+              <div className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out cursor-pointer">
                 PATIENTS & VISITEURS
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clipRule="evenodd" />
                 </svg>
-              </NavLink>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
+              </div>
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transform group-hover:translate-y-0 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/Consultation" className="text-white">CONSULTATION</NavLink></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/VisiterPatient" className="text-white">VISITER UN PATIENT</NavLink></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/ChartePatient" className="text-white">CHARTE DU PATIENT</NavLink></li>
               </ul>
             </li>
             <li className="relative group">
-              <NavLink to="#" className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out">
+              <div className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out cursor-pointer">
                 STAGE & RECRUTEMENT
                 <svg className="ml-2 h-3 w-3 fill-current group-hover:text-blue-300 transition duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clipRule="evenodd" />
                 </svg>
-              </NavLink>
-              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
+              </div>
+              <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transform group-hover:translate-y-0 transition-all duration-500 ease-in-out z-50">
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/stage" className="text-white">DEMANDE DE STAGE</NavLink></li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/job" className="text-white">DEMANDE DE TRAVAIL</NavLink></li>
               </ul>

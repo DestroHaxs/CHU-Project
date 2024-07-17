@@ -1,5 +1,6 @@
 // HomePage.jsx
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import Navbar from './Navbar';
 import Socials from './Socials';
 import Footer from './Footer';
@@ -61,22 +62,22 @@ function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">Accès directs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
+            <NavLink to="/Consultation" className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
               <FaUserMd className="text-blue-500 text-4xl mb-4 group-hover:text-white" />
               <h3 className="text-xl font-semibold text-blue-900 group-hover:text-white">Consultation</h3>
-            </div>
-            <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
+            </NavLink>
+            <NavLink to="/VisiterPatient" className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
               <FaProcedures className="text-blue-500 text-4xl mb-4 group-hover:text-white" />
               <h3 className="text-xl font-semibold text-blue-900 group-hover:text-white">Visiter un patient</h3>
-            </div>
-            <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
+            </NavLink>
+            <NavLink to="" className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
               <FaHospitalAlt className="text-blue-500 text-4xl mb-4 group-hover:text-white" />
               <h3 className="text-xl font-semibold text-blue-900 group-hover:text-white">Soins et spécialités</h3>
-            </div>
-            <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
+            </NavLink>
+            <NavLink to="/job" className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
               <FaBriefcase className="text-blue-500 text-4xl mb-4 group-hover:text-white" />
               <h3 className="text-xl font-semibold text-blue-900 group-hover:text-white">Recrutement</h3>
-            </div>
+            </NavLink>
           </div>
         </div>
       </div>
