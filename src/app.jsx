@@ -1,3 +1,4 @@
+// App.jsx
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -7,17 +8,20 @@ import Organigramme from './Organigramme';
 import Stage from './Stage';
 import Job from './Job';
 import ChartePatient from './ChartePatient';
-import { UserContext } from './UserContext';
-import  Consultation from './Consultation';
+import Consultation from './Consultation';
 import VisiterPatient from './VisiterPatient';
 import SoinsSpecialites from './SoinsSpecialites';
 import RdvOnline from './RdvOnline';
+import { UserContext } from './UserContext';
+import ScrollToTop from './ScrollToTop';
+
 
 function App() {
   const location = useLocation();
 
   return (
     <UserContext.Provider value={{ isConnected: true }}>
+      <ScrollToTop/>
       <TransitionGroup>
         <CSSTransition key={location.key} classNames="fade" timeout={500}>
           <Routes location={location}>
