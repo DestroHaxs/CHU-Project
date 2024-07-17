@@ -6,7 +6,10 @@ import NosComites from './NosComites';
 import Organigramme from './Organigramme';
 import Stage from './Stage';
 import Job from './Job';
+import ChartePatient from './ChartePatient';
 import { UserContext } from './UserContext';
+import  Consultation from './Consultation';
+import VisiterPatient from './VisiterPatient';
 
 function App() {
   const location = useLocation();
@@ -17,10 +20,13 @@ function App() {
         <CSSTransition key={location.key} classNames="fade" timeout={500}>
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/noscomites" element={<NosComites />} />
-            <Route path="/organigramme" element={<Organigramme />} />
+            <Route path="/NosComites" element={<NosComites />} />
+            <Route path="/Organigramme" element={<Organigramme />} />
             <Route path="/stage" element={<Stage />} />
             <Route path="/job" element={<Job />} />
+            <Route path="/chartepatient" element={<ChartePatient />} />
+            <Route path="/Consultation" element={<Consultation />} />
+            <Route path="/VisiterPatient" element={<VisiterPatient />} />
           </Routes>
         </CSSTransition>
       </TransitionGroup>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import './transitions.css';
 import App from './app';
+import ChartePatient from './ChartePatient';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

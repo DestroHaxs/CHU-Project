@@ -8,7 +8,7 @@ function NosComites() {
     <div className="bg-white">
       <Navbar />
       <Socials />
-      <div className="container mx-auto px-6 py-4 mt-20"> {/* Adjust margin-top to push content below navbar */}
+      <div className="container mx-auto px-6 py-4 mt-20"> 
         <h1 className="text-3xl font-bold mb-4 text-blue-900">Nos Comités</h1>
         <div className="space-y-4">
           <div>
