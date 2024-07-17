@@ -43,9 +43,9 @@ const Navbar = forwardRef((props, ref) => {
                 </svg>
               </NavLink>
               <ul className="absolute left-0 mt-2 w-56 bg-blue-900 border border-gray-200 shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-in-out z-50">
-                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="#" className="text-white">CONSULTATION</NavLink></li>
-                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="#" className="text-white">VISITER UN PATIENT</NavLink></li>
-                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="#" className="text-white">CHARTE DU PATIENT</NavLink></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/Consultation" className="text-white">CONSULTATION</NavLink></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/VisiterPatient" className="text-white">VISITER UN PATIENT</NavLink></li>
+                <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out"><NavLink to="/ChartePatient" className="text-white">CHARTE DU PATIENT</NavLink></li>
               </ul>
             </li>
             <li className="relative group">
