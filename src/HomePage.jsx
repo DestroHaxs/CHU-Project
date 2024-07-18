@@ -35,9 +35,11 @@ function HomePage() {
               <h2 className="text-xl font-semibold text-blue-700 mb-4 animate-fadeIn delay-1">
                 CHU de Oujda, votre hôpital public...
               </h2>
+              <NavLink to="/quinous">
               <button className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center ml-12">
                 Découvrez le CHU <FaArrowRight className="ml-2" />
               </button>
+              </NavLink>
             </div>
           </div>
           <div className="w-2/3 relative overflow-hidden flex items-center justify-center p-4" style={{ marginTop: '10px' }}>
@@ -70,7 +72,7 @@ function HomePage() {
               <FaProcedures className="text-blue-500 text-4xl mb-4 group-hover:text-white" />
               <h3 className="text-xl font-semibold text-blue-900 group-hover:text-white">Visiter un patient</h3>
             </NavLink>
-            <NavLink to="" className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
+            <NavLink to="/soins" className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer hover:bg-blue-500 transform hover:scale-105 duration-300 group">
               <FaHospitalAlt className="text-blue-500 text-4xl mb-4 group-hover:text-white" />
               <h3 className="text-xl font-semibold text-blue-900 group-hover:text-white">Soins et spécialités</h3>
             </NavLink>

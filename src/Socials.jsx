@@ -54,7 +54,9 @@ function Socials() {
                 </NavLink>
               </li>
               <li className="px-4 py-2 hover:bg-blue-100 transition duration-200 ease-in-out">
-                <NavLink to="/SoinsSpecialites" className="text-blue-900 flex items-center">
+                <NavLink 
+                to="/Soins" 
+                className="text-blue-900 flex items-center">
                   <FaHospitalAlt className="mr-2" /> Soins et spécialités
                 </NavLink>
               </li>
