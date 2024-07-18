@@ -29,7 +29,7 @@ function VisiterPatient() {
             </ul>
           </div>
           <div className="lg:w-1/2 flex justify-center mt-8 lg:mt-0">
-            <img src={visiteImg} alt="Visite" className="rounded-lg shadow-lg max-w-full h-auto" />
+            <img src={visiteImg} alt="Visite" className="rounded-lg shadow-lg max-w-full h-auto" style={{ maxWidth: '500px' }}  />
           </div>
         </div>
       </div>
