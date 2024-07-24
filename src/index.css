@@ -34,5 +34,9 @@
     animation: shadowPulse 2s infinite;
   }
 
-  
+  /* styles.css or your custom CSS file */
+.filter-white {
+  filter: brightness(0) invert(1);
+}
+
   
