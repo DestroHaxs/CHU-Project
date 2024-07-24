@@ -1,4 +1,3 @@
-// App.jsx
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -12,16 +11,18 @@ import Consultation from './Consultation';
 import VisiterPatient from './VisiterPatient';
 import SoinsSpecialites from './SoinsSpecialites';
 import RdvOnline from './RdvOnline';
+import QuiNous from './QuiNous';
+import LoginPage from './Administration/LoginPage'; 
+
 import { UserContext } from './UserContext';
 import ScrollToTop from './ScrollToTop';
-import QuiNous from './QuiNous';
 
 function App() {
   const location = useLocation();
 
   return (
     <UserContext.Provider value={{ isConnected: true }}>
-      <ScrollToTop/>
+      <ScrollToTop />
       <TransitionGroup>
         <CSSTransition key={location.key} classNames="fade" timeout={500}>
           <Routes location={location}>
@@ -36,7 +37,7 @@ function App() {
             <Route path="/soins" element={<SoinsSpecialites />} />
             <Route path="/rdv" element={<RdvOnline />} />
             <Route path="/quinous" element={<QuiNous />} />
-
+            <Route path="/login" element={<LoginPage />} /> 
           </Routes>
         </CSSTransition>
       </TransitionGroup>

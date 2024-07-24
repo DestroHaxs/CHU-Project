@@ -1,11 +1,18 @@
-import React, { forwardRef } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import chuLogo from './assets/chu_logo.png';
+import { FaUserCircle, FaSearch } from 'react-icons/fa'; 
 
 const Navbar = forwardRef((props, ref) => {
+  const [showSearch, setShowSearch] = useState(false);
+
+  const handleSearchClick = () => {
+    setShowSearch(!showSearch);
+  };
+
   return (
     <div ref={ref} className="bg-white text-blue-900 py-2 shadow-md fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto flex justify-between items-center px-0">
+      <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center space-x-4">
           <NavLink to="/" className="flex items-center">
             <img
@@ -22,6 +29,7 @@ const Navbar = forwardRef((props, ref) => {
         </div>
         <nav className="flex items-center ml-auto relative z-50">
           <ul className="flex space-x-12 mr-4">
+            {/* Existing nav items */}
             <li className="relative group">
               <div className="flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out cursor-pointer">
                 LE CHU
@@ -59,13 +67,11 @@ const Navbar = forwardRef((props, ref) => {
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out">
                   <NavLink to="/stage" className="text-white">DEMANDE DE STAGE
                   </NavLink>
-                  </li>
+                </li>
                 <li className="px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out">
-                  <NavLink 
-                  to="/job" 
-                  className="text-white">DEMANDE D'EMPLOI
+                  <NavLink to="/job" className="text-white">DEMANDE D'EMPLOI
                   </NavLink>
-                  </li>
+                </li>
               </ul>
             </li>
             <li className="relative group">
@@ -79,17 +85,22 @@ const Navbar = forwardRef((props, ref) => {
               </NavLink>
             </li>
           </ul>
-          <div className="relative z-50">
-            <input 
-              type="text" 
-              className="px-4 py-2 rounded text-black" 
-              placeholder="Rechercher..." 
-            />
-            <button className="absolute right-0 top-0 mt-2 mr-2">
-              <svg className="h-4 w-4 fill-current text-gray-600 hover:text-blue-300 transition duration-300 ease-in-out" viewBox="0 0 20 20">
-                <path d="M12.9 14.32a8 8 0 1 1 1.42-1.42l4.58 4.58-1.42 1.42-4.58-4.58zM8 14a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
-              </svg>
-            </button>
+          <div className="relative z-50 flex items-center space-x-4">
+            <div className="relative z-50 flex items-center">
+              <div className={`flex items-center transition-all duration-500 ease-in-out ${showSearch ? 'w-48' : 'w-0'} overflow-hidden`}>
+                <input 
+                  type="text" 
+                  className="px-2 py-1 rounded text-black w-full" 
+                  placeholder="Rechercher..." 
+                />
+              </div>
+              <button onClick={handleSearchClick} className="ml-2">
+                <FaSearch className="h-4 w-4 text-gray-600 hover:text-blue-300 transition duration-300 ease-in-out" />
+              </button>
+            </div>
+            <a href="/login" target="_blank" className="ml-4">
+              <FaUserCircle className="h-8 w-8 text-blue-900 hover:text-blue-300 transition duration-300 ease-in-out" />
+            </a>
           </div>
         </nav>
       </div>
