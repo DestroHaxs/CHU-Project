@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import NavbarAgent from './NavbarAgent';
-import Socials from './Socials';
-import Footer from './Footer';
+import Socials from '../Socials';
+import Footer from '../Footer';
 
 function HomePageAgent() {
   return (
