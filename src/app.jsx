@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import HomePage from './HomePage';
 import NosComites from './NosComites';
@@ -12,13 +12,18 @@ import VisiterPatient from './VisiterPatient';
 import SoinsSpecialites from './SoinsSpecialites';
 import RdvOnline from './RdvOnline';
 import QuiNous from './QuiNous';
-import LoginPage from './Administration/LoginPage'; 
-
+import LoginPage from './Administration/LoginPage';
+import HomePageAdmin from './Administration/HomePageAdmin';
+import HomePageAssistant from './Administration/HomePageAssistant';
 import { UserContext } from './UserContext';
 import ScrollToTop from './ScrollToTop';
+import DemandeStage from './Administration/DemandeStage';
+import DemandeJob from './Administration/DemandeJob';
+import RdvAdmin from './Administration/RdvAdmin';
 
 function App() {
   const location = useLocation();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   return (
     <UserContext.Provider value={{ isConnected: true }}>
@@ -37,7 +42,21 @@ function App() {
             <Route path="/soins" element={<SoinsSpecialites />} />
             <Route path="/rdv" element={<RdvOnline />} />
             <Route path="/quinous" element={<QuiNous />} />
-            <Route path="/login" element={<LoginPage />} /> 
+            <Route path="/login" element={<LoginPage />} />
+            {user && user.dtype === 'ADMIN' ? (
+              <>
+                <Route path="/homepageadmin" element={<HomePageAdmin />} />
+                <Route path="/demandestage" element={<DemandeStage />} />
+                <Route path="/demandejob" element={<DemandeJob />} />
+              </>
+            ) : user && user.dtype === 'ASSISTANT' ? (
+              <>
+                <Route path="/homepageassistant/:specialite" element={<HomePageAssistant />} />
+                <Route path="/rdvadmin" element={<RdvAdmin />} />
+              </>
+            ) : (
+              <Route path="*" element={<Navigate to="/" />} />
+            )}
           </Routes>
         </CSSTransition>
       </TransitionGroup>
