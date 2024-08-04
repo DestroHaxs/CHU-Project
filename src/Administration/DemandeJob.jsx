@@ -4,6 +4,7 @@ import NavbarAdmin from './NavbarAdmin';
 
 const DemandeJob = () => {
   const [demandes, setDemandes] = useState([]);
+  const [visibleDetails, setVisibleDetails] = useState({});
 
   useEffect(() => {
     const fetchDemandes = async () => {
@@ -18,6 +19,13 @@ const DemandeJob = () => {
     fetchDemandes();
   }, []);
 
+  const toggleDetails = (id) => {
+    setVisibleDetails(prevState => ({
+      ...prevState,
+      [id]: !prevState[id]
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <NavbarAdmin />
@@ -26,33 +34,46 @@ const DemandeJob = () => {
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <table className="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead>
-              <tr>
+              <tr className="text-left">
                 <th className="py-2 px-4 border-b">Nom</th>
                 <th className="py-2 px-4 border-b">Prénom</th>
                 <th className="py-2 px-4 border-b">Email</th>
                 <th className="py-2 px-4 border-b">Téléphone</th>
                 <th className="py-2 px-4 border-b">CIN</th>
                 <th className="py-2 px-4 border-b">Poste</th>
-                <th className="py-2 px-4 border-b">CV</th>
-                <th className="py-2 px-4 border-b">Assurance</th>
+                <th className="py-2 px-4 border-b">Actions</th>
               </tr>
             </thead>
             <tbody>
               {demandes.map((demande) => (
-                <tr key={demande.id}>
-                  <td className="py-2 px-4 border-b">{demande.nom}</td>
-                  <td className="py-2 px-4 border-b">{demande.prenom}</td>
-                  <td className="py-2 px-4 border-b">{demande.email}</td>
-                  <td className="py-2 px-4 border-b">{demande.phone}</td>
-                  <td className="py-2 px-4 border-b">{demande.cin}</td>
-                  <td className="py-2 px-4 border-b">{demande.poste}</td>
-                  <td className="py-2 px-4 border-b">
-                    <a href={`http://localhost:8080/api/employee/${demande.id}/cv`} download className="text-blue-500 hover:underline">Télécharger</a>
-                  </td>
-                  <td className="py-2 px-4 border-b">
-                    <a href={`http://localhost:8080/api/employee/${demande.id}/assurance`} download className="text-blue-500 hover:underline">Télécharger</a>
-                  </td>
-                </tr>
+                <React.Fragment key={demande.id}>
+                  <tr className="text-left">
+                    <td className="py-2 px-4 border-b">{demande.nom}</td>
+                    <td className="py-2 px-4 border-b">{demande.prenom}</td>
+                    <td className="py-2 px-4 border-b">{demande.email}</td>
+                    <td className="py-2 px-4 border-b">{demande.phone}</td>
+                    <td className="py-2 px-4 border-b">{demande.cin}</td>
+                    <td className="py-2 px-4 border-b">{demande.poste}</td>
+                    <td className="py-2 px-4 border-b">
+                      <button
+                        className="text-blue-500 hover:underline"
+                        onClick={() => toggleDetails(demande.id)}
+                      >
+                        {visibleDetails[demande.id] ? 'Cacher' : 'Voir'} Détails
+                      </button>
+                    </td>
+                  </tr>
+                  {visibleDetails[demande.id] && (
+                    <tr className="text-left">
+                      <td colSpan="7" className="py-2 px-4 border-b">
+                        <div className="bg-gray-100 p-4 rounded-lg">
+                          <p><strong>CV:</strong> <a href={`http://localhost:8080/api/employee/${demande.id}/cv`} download className="text-blue-500 hover:underline">Télécharger</a></p>
+                          <p><strong>Assurance:</strong> <a href={`http://localhost:8080/api/employee/${demande.id}/assurance`} download className="text-blue-500 hover:underline">Télécharger</a></p>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               ))}
             </tbody>
           </table>

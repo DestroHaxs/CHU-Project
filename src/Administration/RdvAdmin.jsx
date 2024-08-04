@@ -9,7 +9,15 @@ Modal.setAppElement('#root'); // Set the app root element for accessibility
 
 function RdvAdmin() {
   const [rdvs, setRdvs] = useState([]);
+  const [doctors, setDoctors] = useState([
+    { id: 1, name: 'Docteur Ahmed' },
+    { id: 2, name: 'Docteur Fatima' },
+    { id: 3, name: 'Docteur Khalid' },
+    { id: 4, name: 'Docteur Leila' },
+    { id: 5, name: 'Docteur Youssef' },
+  ]); // Liste des médecins arabes écrits en français
   const [selectedRdv, setSelectedRdv] = useState(null);
+  const [selectedDoctor, setSelectedDoctor] = useState(''); // New state for selected doctor
   const [message, setMessage] = useState('');
   const [updatedDate, setUpdatedDate] = useState('');
   const [updatedTime, setUpdatedTime] = useState('');
@@ -35,6 +43,7 @@ function RdvAdmin() {
     setSelectedRdv(rdv);
     setUpdatedDate(rdv.date);
     setUpdatedTime(rdv.time);
+    setSelectedDoctor(rdv.doctor || ''); // Set the selected doctor
   };
 
   const handleAcceptRdv = async () => {
@@ -44,6 +53,7 @@ function RdvAdmin() {
           ...selectedRdv,
           date: updatedDate,
           time: updatedTime,
+          doctor: selectedDoctor, // Include selected doctor
         });
         setMessage('Le rendez-vous a été accepté et un email a été envoyé avec succès!');
         setShowMessage(true);
@@ -186,6 +196,18 @@ function RdvAdmin() {
                   onChange={(e) => setUpdatedTime(e.target.value)}
                   className="ml-2 border border-gray-300 rounded px-2 py-1"
                 />
+              </p>
+              <p><strong>Médecin:</strong>
+                <select
+                  value={selectedDoctor}
+                  onChange={(e) => setSelectedDoctor(e.target.value)}
+                  className="ml-2 border border-gray-300 rounded px-2 py-1"
+                >
+                  <option value="">Sélectionnez un médecin</option>
+                  {doctors.map((doctor) => (
+                    <option key={doctor.id} value={doctor.name}>{doctor.name}</option>
+                  ))}
+                </select>
               </p>
               <button
                 className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-300"

@@ -2,41 +2,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes shadowPulse {
-    0%, 100% {
-      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3); /* More pronounced blue shadow */
-    }
-    50% {
-      box-shadow: 0 8px 16px rgba(59, 130, 246, 0.6); /* More pronounced blue shadow */
-    }
-  }
-  
-  .animate-fadeIn {
-    animation: fadeIn 1s ease-in-out forwards;
-  }
-  
-  .animate-fadeIn.delay-1 {
-    animation-delay: 1s;
-  }
-  
-  .animate-shadowPulse {
-    animation: shadowPulse 2s infinite;
-  }
 
-  /* styles.css or your custom CSS file */
-.filter-white {
-  filter: brightness(0) invert(1);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease-in-out forwards;
 }
 
 /* Custom checkbox styling */
@@ -73,5 +63,25 @@
   border-radius: 2px;
 }
 
+.filter-white {
+  filter: brightness(0) invert(1);
+}
 
-  
+/* Loading spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}

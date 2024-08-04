@@ -11,6 +11,8 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +27,7 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
       console.log('Login response:', response.data); // Log the response data
@@ -38,21 +41,25 @@ function LoginPage() {
           localStorage.removeItem('password');
         }
         const user = response.data;
-        if (user.dtype === 'ADMIN') {
-          navigate('/homepageadmin');
-        } else if (user.dtype === 'ASSISTANT') {
-          navigate(`/homepageassistant/${user.specialite}`);
-        }
+        setIsFadingOut(true);
+        setTimeout(() => {
+          if (user.dtype === 'ADMIN') {
+            navigate('/homepageadmin');
+          } else if (user.dtype === 'ASSISTANT') {
+            navigate(`/homepageassistant/${user.specialite}`);
+          }
+        }, 1500); // 1.5 second delay to allow for fade-out animation
       }
     } catch (error) {
       console.error('Login error:', error); // Log the error
       setError('Invalid credentials');
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-center flex items-center justify-center animate-login" style={{ backgroundImage: `url(${loginBg})` }}>
-      <div className="bg-blue-900 bg-opacity-80 p-8 rounded-lg shadow-lg max-w-3xl w-full mt-16 flex items-center justify-between">
+    <div className={`min-h-screen bg-cover bg-center flex items-center justify-center ${isFadingOut ? 'fade-out' : 'fade-in'}`} style={{ backgroundImage: `url(${loginBg})` }}>
+      <div className="bg-blue-900 bg-opacity-80 p-8 rounded-lg shadow-lg max-w-3xl w-full mt-16 flex items-center justify-between transition-all duration-500 ease-in-out">
         <div className="flex items-center justify-center mb-6 mr-8">
           <img src={chuLogo} alt="Logo CHU Oujda" className="h-24 mr-3 mt-2 filter-white" />
           <div className="text-left">
@@ -111,8 +118,9 @@ function LoginPage() {
               <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                disabled={isLoading}
               >
-                Login
+                {isLoading ? <div className="spinner"></div> : 'Login'}
               </button>
               <NavLink to="/" className="text-blue-500 hover:underline flex items-center ml-4">
                 <FaHome className="mr-1" /> Back to Home

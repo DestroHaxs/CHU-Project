@@ -20,28 +20,30 @@ function NavbarAssistant() {
     }, 500);
   };
 
+  const handleLogoClick = () => {
+    navigate('/homepageassistant');
+  };
+
   return (
-    <div className={`bg-blue-900 text-white py-2 shadow-md fixed top-0 left-0 right-0 z-50 ${showLogout ? 'animate-logout' : ''}`}>
+    <div className="bg-blue-900 text-white py-2 shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="flex items-center space-x-4">
-          <NavLink to="/" className="flex items-center">
-            <img
-              src={chuLogo}
-              alt="Logo CHU Oujda"
-              className="h-16 mr-4 transform transition-transform duration-300 ease-in-out hover:scale-110 filter-white"
-            />
-            <div className="text-left">
-              <div className="text-lg font-bold leading-none">OUJDA</div>
-              <div className="border-t border-white my-1"></div>
-              <div className="text-xs font-medium leading-none">CENTRE HOSPITALIER UNIVERSITAIRE</div>
-            </div>
-          </NavLink>
+        <div className="flex items-center space-x-4 cursor-pointer" onClick={handleLogoClick}>
+          <img
+            src={chuLogo}
+            alt="Logo CHU Oujda"
+            className="h-16 mr-4 filter-white"
+          />
+          <div className="text-left">
+            <div className="text-lg font-bold leading-none">OUJDA</div>
+            <div className="border-t border-white my-1"></div>
+            <div className="text-xs font-medium leading-none">CENTRE HOSPITALIER UNIVERSITAIRE</div>
+          </div>
         </div>
         <nav className="flex items-center ml-auto relative z-50 space-x-12">
           <NavLink
             to="/rdvadmin"
             className={({ isActive }) =>
-              isActive ? "flex items-center text-sm font-bold text-blue-500" : "flex items-center text-sm font-bold group-hover:text-blue-300 transition duration-300 ease-in-out text-white hover:text-blue-300"
+              isActive ? "flex items-center text-sm font-bold text-blue-500" : "flex items-center text-sm font-bold text-white hover:text-blue-300 transition duration-300 ease-in-out"
             }
           >
             CONSULTATION
