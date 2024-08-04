@@ -5,7 +5,7 @@ import { FaSearch, FaSignOutAlt } from 'react-icons/fa';
 
 function NavbarAdmin() {
   const [showSearch, setShowSearch] = useState(false);
-  const [isFadingOut, setIsFadingOut] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const navigate = useNavigate();
 
   const handleSearchClick = () => {
@@ -13,25 +13,29 @@ function NavbarAdmin() {
   };
 
   const handleLogout = () => {
-    setIsFadingOut(true);
-    document.querySelector('.overlay').classList.add('fade-in');
+    setIsLoggingOut(true);
     setTimeout(() => {
       localStorage.removeItem('user');
       navigate('/login');
-    }, 500);
+    }, 1000); // 1 second delay for logout transition
   };
 
   const handleLogoClick = () => {
-    setIsFadingOut(true);
-    document.querySelector('.overlay').classList.add('fade-in');
-    setTimeout(() => {
-      navigate('/homepageadmin');
-    }, 500);
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      if (user.dtype === 'ADMIN') {
+        navigate('/homepageadmin');
+      } else if (user.dtype === 'ASSISTANT') {
+        navigate(`/homepageassistant/${user.specialite}`);
+      }
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
     <>
-      <div className={`overlay ${isFadingOut ? 'fade-out' : ''}`}></div>
+      <div className={`overlay ${isLoggingOut ? 'fade-out' : ''}`}></div>
       <div className="bg-blue-900 text-white py-2 shadow-md fixed top-0 left-0 right-0 z-50">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center space-x-4 cursor-pointer" onClick={handleLogoClick}>
@@ -40,7 +44,7 @@ function NavbarAdmin() {
               alt="Logo CHU Oujda"
               className="h-16 mr-4 filter-white"
             />
-            <div className="text-left">
+            <div className="text-left" onClick={handleLogoClick}>
               <div className="text-lg font-bold leading-none">OUJDA</div>
               <div className="border-t border-white my-1"></div>
               <div className="text-xs font-medium leading-none">CENTRE HOSPITALIER UNIVERSITAIRE</div>

@@ -12,7 +12,6 @@ function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isFadingOut, setIsFadingOut] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,14 +40,14 @@ function LoginPage() {
           localStorage.removeItem('password');
         }
         const user = response.data;
-        setIsFadingOut(true);
         setTimeout(() => {
+          setIsLoading(false);
           if (user.dtype === 'ADMIN') {
             navigate('/homepageadmin');
           } else if (user.dtype === 'ASSISTANT') {
             navigate(`/homepageassistant/${user.specialite}`);
           }
-        }, 1500); // 1.5 second delay to allow for fade-out animation
+        }, 1500); // 1.5 second delay for smooth transition
       }
     } catch (error) {
       console.error('Login error:', error); // Log the error
@@ -58,7 +57,7 @@ function LoginPage() {
   };
 
   return (
-    <div className={`min-h-screen bg-cover bg-center flex items-center justify-center ${isFadingOut ? 'fade-out' : 'fade-in'}`} style={{ backgroundImage: `url(${loginBg})` }}>
+    <div className={`min-h-screen bg-cover bg-center flex items-center justify-center ${isLoading ? 'loading' : ''}`} style={{ backgroundImage: `url(${loginBg})` }}>
       <div className="bg-blue-900 bg-opacity-80 p-8 rounded-lg shadow-lg max-w-3xl w-full mt-16 flex items-center justify-between transition-all duration-500 ease-in-out">
         <div className="flex items-center justify-center mb-6 mr-8">
           <img src={chuLogo} alt="Logo CHU Oujda" className="h-24 mr-3 mt-2 filter-white" />
@@ -117,7 +116,7 @@ function LoginPage() {
             <div className="flex items-center justify-between">
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-transform duration-500 ${isLoading ? 'transform scale-110' : ''}`}
                 disabled={isLoading}
               >
                 {isLoading ? <div className="spinner"></div> : 'Login'}
