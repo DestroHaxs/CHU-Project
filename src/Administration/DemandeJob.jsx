@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarAdmin from './NavbarAdmin';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const DemandeJob = () => {
   const [demandes, setDemandes] = useState([]);
   const [visibleDetails, setVisibleDetails] = useState({});
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     const fetchDemandes = async () => {
@@ -24,6 +27,29 @@ const DemandeJob = () => {
       ...prevState,
       [id]: !prevState[id]
     }));
+  };
+
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setShowConfirm(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/api/employee/${deleteId}`);
+      setDemandes(demandes.filter(demande => demande.id !== deleteId));
+      setShowConfirm(false);
+      setDeleteId(null);
+    } catch (error) {
+      console.error('Error deleting demande:', error);
+      setShowConfirm(false);
+      setDeleteId(null);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirm(false);
+    setDeleteId(null);
   };
 
   return (
@@ -54,12 +80,18 @@ const DemandeJob = () => {
                     <td className="py-2 px-4 border-b">{demande.phone}</td>
                     <td className="py-2 px-4 border-b">{demande.cin}</td>
                     <td className="py-2 px-4 border-b">{demande.poste}</td>
-                    <td className="py-2 px-4 border-b">
+                    <td className="py-2 px-4 border-b flex items-center">
                       <button
-                        className="text-blue-500 hover:underline"
+                        className="text-blue-500 hover:underline mr-2"
                         onClick={() => toggleDetails(demande.id)}
                       >
                         {visibleDetails[demande.id] ? 'Cacher' : 'Voir'} Détails
+                      </button>
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => handleDeleteClick(demande.id)}
+                      >
+                        <FaTrashAlt />
                       </button>
                     </td>
                   </tr>
@@ -79,6 +111,28 @@ const DemandeJob = () => {
           </table>
         </div>
       </div>
+      {showConfirm && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-lg font-bold mb-4">Confirmer la suppression</h2>
+            <p className="mb-4">Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+            <div className="flex justify-end">
+              <button
+                onClick={handleCancelDelete}
+                className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                className="bg-red-500 text-white px-4 py-2 rounded"
+              >
+                Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

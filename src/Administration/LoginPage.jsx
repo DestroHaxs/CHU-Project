@@ -42,9 +42,9 @@ function LoginPage() {
         const user = response.data;
         setTimeout(() => {
           setIsLoading(false);
-          if (user.dtype === 'ADMIN') {
+          if (user.role === 'ADMIN') {
             navigate('/homepageadmin');
-          } else if (user.dtype === 'ASSISTANT') {
+          } else if (user.role === 'ASSISTANT') {
             navigate(`/homepageassistant/${user.specialite}`);
           }
         }, 1500); // 1.5 second delay for smooth transition

@@ -85,3 +85,7 @@
   height: 24px;
   animation: spin 1s linear infinite;
 }
+.rtl {
+  direction: rtl;
+  text-align: right;
+}

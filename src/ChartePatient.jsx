@@ -9,57 +9,109 @@ function ChartePatient() {
       <Navbar />
       <Socials />
       <div className="container mx-auto px-6 py-4 mt-20 flex-grow">
-        <h1 className="text-3xl font-bold mb-4 text-blue-900 text-left">Charte du patient</h1>
-        <div className="space-y-8">
-          <div>
-            <p className="text-gray-700">
-              Pour garantir la qualité des services, chaque patient, les membres de sa famille, ses accompagnateurs et ses visiteurs doivent respecter les recommandations suivantes :
+        <h1 className="text-3xl font-bold mb-8 text-blue-900 text-center">ميثاق المريض</h1>
+        <div className="space-y-12">
+          <div className="rtl text-right">
+            <p className="text-gray-700 text-lg mb-8">
+              من أجل جودة الخدمات، يتوجب على كل مريض، أفراد عائلته، مرافقيه وزائريه الالتزام بالتوصيات التالية:
             </p>
-            <ul className="list-disc list-inside mt-4 space-y-2">
-              <li>
-                <strong>Fournir des informations précises :</strong> Afin de garantir l'efficacité du diagnostic et du traitement, il est demandé de fournir des informations précises sur les données personnelles, les antécédents médicaux ou les traitements reçus par le patient.
+            <ul className="list-disc list-inside space-y-8 text-gray-700 text-lg">
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">الإدلاء بمعلومات دقيقة:</strong>
+                  <span className="block mt-1">ضمانا لنجاعة التشخيص والعلاج، المرجو الإدلاء بمعلومات دقيقة حول البيانات الشخصية أو التاريخ الصحي للمريض أو العلاج الذي يتلقاه.</span>
+                </div>
               </li>
-              <li>
-                <strong>Respecter les autres :</strong> Pour le confort de tous, veuillez traiter les autres patients et les visiteurs avec respect et adopter un comportement civilisé.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">احترام الآخرين:</strong>
+                  <span className="block mt-1">من أجل راحة الجميع، المرجو التعامل باحترام واتباع سلوك حضاري مع المرضى الآخرين أو الزائرين.</span>
+                </div>
               </li>
-              <li>
-                <strong>Suivre les instructions :</strong> Respecter l'équipe médicale, infirmière et administrative, et suivre leurs instructions conformément aux règlements en vigueur au sein du centre hospitalier.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">الالتزام بالتعليمات:</strong>
+                  <span className="block mt-1">احترام الفريق الطبي، التمريضي والإداري، والالتزام بتعليماتهم ضمن القوانين الجاري بها العمل بالمركز الاستشفائي.</span>
+                </div>
               </li>
-              <li>
-                <strong>Respecter les rendez-vous :</strong> Respecter les rendez-vous et informer le personnel en cas d'impossibilité de se présenter afin qu'un autre patient puisse bénéficier de ce créneau.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">المحافظة على المواعيد:</strong>
+                  <span className="block mt-1">المحافظة على المواعيد وإبلاغ العاملين في حالة عدم التمكن من الحضور حتى يتمكن مريض آخر من الاستفادة من هذا الوقت.</span>
+                </div>
               </li>
-              <li>
-                <strong>Respecter les files d'attente :</strong> Respecter les files d'attente pour un meilleur service.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">احترام طوابير الانتظار:</strong>
+                  <span className="block mt-1">احترام طوابير الانتظار من أجل خدمة أفضل.</span>
+                </div>
               </li>
-              <li>
-                <strong>Maintenir le calme :</strong> Maintenir le calme dans les salles d'attente et pendant les heures de visite, par respect pour l'état de santé des patients.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">الحفاظ على الهدوء:</strong>
+                  <span className="block mt-1">الحفاظ على الهدوء بقاعات الانتظار وخلال أوقات الزيارة، احتراما للحالة الصحية للمرضى.</span>
+                </div>
               </li>
-              <li>
-                <strong>Maintenir la propreté :</strong> Maintenir la propreté du centre hospitalier en utilisant les poubelles mises à disposition.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">الحفاظ على النظافة:</strong>
+                  <span className="block mt-1">الحفاظ على نظافة المركز الاستشفائي، وذلك باستخدام سلة المهملات الموضوعة لهذا الغرض.</span>
+                </div>
               </li>
-              <li>
-                <strong>Préserver les équipements du centre hospitalier :</strong> Préserver les équipements du centre hospitalier, éviter de les utiliser de manière excessive ou inappropriée.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">الحفاظ على معدات المركز الاستشفائي:</strong>
+                  <span className="block mt-1">الحفاظ على معدات المركز الاستشفائي، أي عدم الإفراط في استخدامها أو استخدامها في غير محلها.</span>
+                </div>
               </li>
-              <li>
-                <strong>S'abstenir de fumer :</strong> S'abstenir de fumer à l'intérieur du centre hospitalier afin de promouvoir les objectifs de l'initiative "Hôpital sans tabac".
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">الامتناع عن التدخين:</strong>
+                  <span className="block mt-1">الامتناع عن التدخين داخل المركز الاستشفائي، و ذلك ترسيخا لأهداف مبادرة "مستشفى بدون تدخين".</span>
+                </div>
               </li>
-              <li>
-                <strong>Visiter le patient :</strong> Pour le confort des patients, veuillez limiter le nombre de visiteurs et respecter les heures de visite. Le nombre de visiteurs est limité à deux par patient.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">زيارة المريض:</strong>
+                  <span className="block mt-1">من أجل راحة المرضى، المرجو زيارة المريض بأعداد قليلة وخلال أوقات الزيارة المحددة. ويحدد عدد الزوار زائرين لكل مريض.</span>
+                </div>
               </li>
-              <li>
-                <strong>Respecter le régime alimentaire du patient :</strong> Respecter le régime alimentaire du patient et les quantités prescrites par le médecin. Les repas apportés de l'extérieur sont soumis à la supervision du médecin ou du nutritionniste.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">احترام النظام الغذائي للمريض:</strong>
+                  <span className="block mt-1">احترام النظام الغذائي للمريض والمقادير التي يصفها له الطبيب. وتخضع الوجبات المحمولة من الخارج للمراقبة من طرف الطبيب أو الاختصاصي في التغذية.</span>
+                </div>
               </li>
-              <li>
-                <strong>Préserver les effets personnels :</strong> Lors de l'admission, apporter un nécessaire de toilette personnel (dentifrice et brosse à dents, peigne, serviette, vêtements et sandales) et ne pas les prêter à d'autres patients.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">الحفاظ على الأشياء الخاصة:</strong>
+                  <span className="block mt-1">اصطحاب، عند الدخول للاستشفاء، محفظة بها أدوات النظافة الشخصية (معجون الأسنان وفرشاة، مشط، منشفة، ملابس وصندل)، وعدم إعارتها للمرضى الآخرين.</span>
+                </div>
               </li>
-              <li>
-                <strong>Quitter le centre hospitalier :</strong> Les patients hospitalisés ne doivent quitter le centre hospitalier qu'avec l'autorisation du médecin responsable. En cas de départ souhaité, le patient signe une décharge après explication des conséquences de son départ.
+              <li className="flex items-start">
+                <span className="mr-2 text-xl">•</span>
+                <div>
+                  <strong className="text-xl">مغادرة المركز الاستشفائي:</strong>
+                  <span className="block mt-1">بالنسبة للمرضى المستفيدين من الاستشفاء، لا يتوجب عليهم مغادرة المركز الاستشفائي إلا بإذن من الطبيب المسؤول. في حالة رغبته المغادرة يوقع المريض تعهد خاص، بعد أن تفسر له النتائج المترتبة عن مغادرته.</span>
+                </div>
               </li>
             </ul>
           </div>
         </div>
-        <p className="text-center text-gray-700 mt-8">
-          La charte du patient ci-dessus montre les droits et responsabilités des patients au sein de notre centre hospitalier. Chaque point est important pour assurer la qualité des soins et la satisfaction des patients.
+        <p className="text-center text-gray-700 mt-12 leading-loose rtl text-lg">
+          الميثاق أعلاه يعرض حقوق وواجبات المرضى داخل مركزنا الاستشفائي. كل نقطة مهمة لضمان جودة الرعاية ورضا المرضى.
         </p>
       </div>
       <Footer />

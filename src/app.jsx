@@ -20,6 +20,8 @@ import ScrollToTop from './ScrollToTop';
 import DemandeStage from './Administration/DemandeStage';
 import DemandeJob from './Administration/DemandeJob';
 import RdvAdmin from './Administration/RdvAdmin';
+import AddUser from './Administration/AddUser';
+import ManageUsers from './Administration/ManageUsers';
 
 function App() {
   const location = useLocation();
@@ -43,13 +45,15 @@ function App() {
             <Route path="/rdv" element={<RdvOnline />} />
             <Route path="/quinous" element={<QuiNous />} />
             <Route path="/login" element={<LoginPage />} />
-            {user && user.dtype === 'ADMIN' ? (
+            {user && user.role === 'ADMIN' ? (
               <>
                 <Route path="/homepageadmin" element={<HomePageAdmin />} />
                 <Route path="/demandestage" element={<DemandeStage />} />
                 <Route path="/demandejob" element={<DemandeJob />} />
+                <Route path="/adduser" element={<AddUser />} />
+                <Route path="/manageusers" element={<ManageUsers />} />
               </>
-            ) : user && user.dtype === 'ASSISTANT' ? (
+            ) : user && user.role === 'ASSISTANT' ? (
               <>
                 <Route path="/homepageassistant/:specialite" element={<HomePageAssistant />} />
                 <Route path="/rdvadmin" element={<RdvAdmin />} />

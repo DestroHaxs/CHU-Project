@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import NavbarAdmin from './NavbarAdmin';
+import axios from 'axios';
 import '../index.css';
 
 const HomePageAdmin = () => {
   const [adminName, setAdminName] = useState('');
 
   useEffect(() => {
-    console.log('HomePageAdmin rendered');
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.dtype === 'ADMIN') {
-      setAdminName(`${user.nom} ${user.prenom}`);
+    if (user && user.role === 'ADMIN') {
+      axios.get(`http://localhost:8080/api/auth/${user.id}`)
+        .then(response => {
+          const fetchedUser = response.data;
+          setAdminName(fetchedUser.name);
+        })
+        .catch(error => {
+          console.error('There was an error fetching the user data:', error);
+        });
     }
   }, []);
 
