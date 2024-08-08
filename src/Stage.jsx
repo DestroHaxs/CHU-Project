@@ -11,10 +11,20 @@ function Stage() {
   const [telephone, setTelephone] = useState('');
   const [cin, setCin] = useState('');
   const [cne, setCne] = useState('');
+  const [service, setService] = useState(''); // New state for service
   const [assurance, setAssurance] = useState(null);
   const [cv, setCv] = useState(null);
   const [attestation, setAttestation] = useState(null);
   const [message, setMessage] = useState('');
+
+  const services = [
+    'Service Informatique',
+    'Service Cardiologie',
+    'Service Neurologie',
+    'Service Oncologie',
+    'Service Orthopédie',
+    'Service Radiologie'
+  ]; // Example list of services
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +35,7 @@ function Stage() {
     formData.append('telephone', telephone);
     formData.append('cin', cin);
     formData.append('cne', cne);
+    formData.append('service', service); // Append service
     formData.append('assurance', assurance);
     formData.append('cv', cv);
     formData.append('attestation', attestation);
@@ -133,6 +144,23 @@ function Stage() {
               placeholder="Votre CNE"
               required
             />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="service">
+              Service
+            </label>
+            <select
+              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="service"
+              value={service}
+              onChange={(e) => setService(e.target.value)}
+              required
+            >
+              <option value="">Sélectionnez un service</option>
+              {services.map((service, index) => (
+                <option key={index} value={service}>{service}</option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="assurance">

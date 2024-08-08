@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarAdmin from './NavbarAdmin';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 
 const DemandeJob = () => {
   const [demandes, setDemandes] = useState([]);
   const [visibleDetails, setVisibleDetails] = useState({});
   const [showConfirm, setShowConfirm] = useState(false);
-  const [deleteId, setDeleteId] = useState(null);
+  const [action, setAction] = useState(null);
+  const [actionId, setActionId] = useState(null);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const fetchDemandes = async () => {
@@ -29,27 +32,44 @@ const DemandeJob = () => {
     }));
   };
 
-  const handleDeleteClick = (id) => {
-    setDeleteId(id);
+  const handleAcceptClick = (id) => {
+    setAction('accept');
+    setActionId(id);
     setShowConfirm(true);
   };
 
-  const handleConfirmDelete = async () => {
+  const handleDeclineClick = (id) => {
+    setAction('decline');
+    setActionId(id);
+    setShowConfirm(true);
+  };
+
+  const handleConfirmAction = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/employee/${deleteId}`);
-      setDemandes(demandes.filter(demande => demande.id !== deleteId));
+      if (action === 'accept') {
+        await axios.post(`http://localhost:8080/api/employee/${actionId}/accept`);
+        setPopupMessage('L\'email d\'acceptation a été envoyé avec succès');
+      } else if (action === 'decline') {
+        await axios.post(`http://localhost:8080/api/employee/${actionId}/decline`);
+        setPopupMessage('L\'email de refus a été envoyé avec succès');
+      }
+      setDemandes(demandes.filter(demande => demande.id !== actionId));
+      setShowPopup(true);
       setShowConfirm(false);
-      setDeleteId(null);
+      setActionId(null);
+      setAction(null);
     } catch (error) {
-      console.error('Error deleting demande:', error);
+      console.error('Error processing action:', error);
       setShowConfirm(false);
-      setDeleteId(null);
+      setActionId(null);
+      setAction(null);
     }
   };
 
-  const handleCancelDelete = () => {
+  const handleCancelAction = () => {
     setShowConfirm(false);
-    setDeleteId(null);
+    setActionId(null);
+    setAction(null);
   };
 
   return (
@@ -88,10 +108,16 @@ const DemandeJob = () => {
                         {visibleDetails[demande.id] ? 'Cacher' : 'Voir'} Détails
                       </button>
                       <button
-                        className="text-red-500 hover:text-red-700"
-                        onClick={() => handleDeleteClick(demande.id)}
+                        className="text-green-500 hover:text-green-700 mr-2"
+                        onClick={() => handleAcceptClick(demande.id)}
                       >
-                        <FaTrashAlt />
+                        <FaCheck />
+                      </button>
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => handleDeclineClick(demande.id)}
+                      >
+                        <FaTimes />
                       </button>
                     </td>
                   </tr>
@@ -114,23 +140,37 @@ const DemandeJob = () => {
       {showConfirm && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold mb-4">Confirmer la suppression</h2>
-            <p className="mb-4">Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+            <h2 className="text-lg font-bold mb-4">Confirmer l'action</h2>
+            <p className="mb-4">Êtes-vous sûr de vouloir continuer cette action ?</p>
             <div className="flex justify-end">
               <button
-                onClick={handleCancelDelete}
+                onClick={handleCancelAction}
                 className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2"
               >
                 Annuler
               </button>
               <button
-                onClick={handleConfirmDelete}
-                className="bg-red-500 text-white px-4 py-2 rounded"
+                onClick={handleConfirmAction}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
               >
-                Supprimer
+                Confirmer
               </button>
             </div>
           </div>
+        </div>
+      )}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg z-10">
+            <p>{popupMessage}</p>
+            <button
+              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+              onClick={() => setShowPopup(false)}
+            >
+              Fermer
+            </button>
+          </div>
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-50"></div>
         </div>
       )}
     </div>

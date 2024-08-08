@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarAdmin from './NavbarAdmin';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 
 const DemandeStage = () => {
   const [demandes, setDemandes] = useState([]);
   const [visibleDetails, setVisibleDetails] = useState({});
   const [showConfirm, setShowConfirm] = useState(false);
-  const [deleteId, setDeleteId] = useState(null);
+  const [action, setAction] = useState(null);
+  const [actionId, setActionId] = useState(null);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const fetchDemandes = async () => {
@@ -29,27 +32,30 @@ const DemandeStage = () => {
     }));
   };
 
-  const handleDeleteClick = (id) => {
-    setDeleteId(id);
+  const handleActionClick = (id, actionType) => {
+    setActionId(id);
+    setAction(actionType);
     setShowConfirm(true);
   };
 
-  const handleConfirmDelete = async () => {
+  const handleConfirmAction = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/stagiaire/${deleteId}`);
-      setDemandes(demandes.filter(demande => demande.id !== deleteId));
+      await axios.post(`http://localhost:8080/api/stagiaire/${actionId}/${action}`);
+      setDemandes(demandes.filter(demande => demande.id !== actionId));
+      setPopupMessage(`Le message a été envoyé avec succès.`);
+      setShowPopup(true);
       setShowConfirm(false);
-      setDeleteId(null);
+      setActionId(null);
     } catch (error) {
-      console.error('Error deleting demande:', error);
+      console.error(`Error during ${action} action:`, error);
       setShowConfirm(false);
-      setDeleteId(null);
+      setActionId(null);
     }
   };
 
-  const handleCancelDelete = () => {
+  const handleCancelAction = () => {
     setShowConfirm(false);
-    setDeleteId(null);
+    setActionId(null);
   };
 
   return (
@@ -80,18 +86,24 @@ const DemandeStage = () => {
                     <td className="py-2 px-4 border-b">{demande.phone}</td>
                     <td className="py-2 px-4 border-b">{demande.cin}</td>
                     <td className="py-2 px-4 border-b">{demande.cne}</td>
-                    <td className="py-2 px-4 border-b flex items-center">
+                    <td className="py-2 px-4 border-b flex items-center space-x-4">
                       <button
-                        className="text-blue-500 hover:underline mr-2"
+                        className="text-blue-500 hover:underline"
                         onClick={() => toggleDetails(demande.id)}
                       >
                         {visibleDetails[demande.id] ? 'Cacher' : 'Voir'} Détails
                       </button>
                       <button
-                        className="text-red-500 hover:text-red-700"
-                        onClick={() => handleDeleteClick(demande.id)}
+                        className="text-green-500 hover:text-green-700"
+                        onClick={() => handleActionClick(demande.id, 'accept')}
                       >
-                        <FaTrashAlt />
+                        <FaCheck />
+                      </button>
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => handleActionClick(demande.id, 'decline')}
+                      >
+                        <FaTimes />
                       </button>
                     </td>
                   </tr>
@@ -115,23 +127,37 @@ const DemandeStage = () => {
       {showConfirm && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold mb-4">Confirmer la suppression</h2>
-            <p className="mb-4">Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+            <h2 className="text-lg font-bold mb-4">Confirmer l'action</h2>
+            <p className="mb-4">Êtes-vous sûr de vouloir {action === 'accept' ? 'accepter' : 'refuser'} cette demande de stage ?</p>
             <div className="flex justify-end">
               <button
-                onClick={handleCancelDelete}
+                onClick={handleCancelAction}
                 className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2"
               >
                 Annuler
               </button>
               <button
-                onClick={handleConfirmDelete}
-                className="bg-red-500 text-white px-4 py-2 rounded"
+                onClick={handleConfirmAction}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
               >
-                Supprimer
+                Confirmer
               </button>
             </div>
           </div>
+        </div>
+      )}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg z-10">
+            <p>{popupMessage}</p>
+            <button
+              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+              onClick={() => setShowPopup(false)}
+            >
+              Fermer
+            </button>
+          </div>
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-50"></div>
         </div>
       )}
     </div>
