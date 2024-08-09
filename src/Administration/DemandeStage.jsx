@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarAdmin from './NavbarAdmin';
-import { FaCheck, FaTimes } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaSave } from 'react-icons/fa'; // Imported FaSave
 
 const DemandeStage = () => {
   const [demandes, setDemandes] = useState([]);
@@ -11,6 +11,7 @@ const DemandeStage = () => {
   const [actionId, setActionId] = useState(null);
   const [popupMessage, setPopupMessage] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [modifiedDates, setModifiedDates] = useState({}); // New state for modified dates
 
   useEffect(() => {
     const fetchDemandes = async () => {
@@ -38,9 +39,39 @@ const DemandeStage = () => {
     setShowConfirm(true);
   };
 
+  const handleDateChange = (id, dateType, value) => {
+    setModifiedDates(prevState => ({
+      ...prevState,
+      [id]: {
+        ...prevState[id],
+        [dateType]: value,
+      }
+    }));
+  };
+
+  const handleSaveDates = async (id) => { // New function to save dates
+    try {
+      const { dateDebut, dateFin } = modifiedDates[id] || {};
+      await axios.put(`http://localhost:8080/api/stagiaire/${id}/update-dates`, {
+        dateDebut,
+        dateFin
+      });
+      setPopupMessage('Les dates ont été enregistrées avec succès.');
+      setShowPopup(true);
+    } catch (error) {
+      console.error('Error saving dates:', error);
+      setPopupMessage("Erreur lors de l'enregistrement des dates.");
+      setShowPopup(true);
+    }
+  };
+
   const handleConfirmAction = async () => {
     try {
-      await axios.post(`http://localhost:8080/api/stagiaire/${actionId}/${action}`);
+      const { dateDebut, dateFin } = modifiedDates[actionId] || {};
+      await axios.post(`http://localhost:8080/api/stagiaire/${actionId}/${action}`, {
+        dateDebut,
+        dateFin
+      });
       setDemandes(demandes.filter(demande => demande.id !== actionId));
       setPopupMessage(`Le message a été envoyé avec succès.`);
       setShowPopup(true);
@@ -114,6 +145,32 @@ const DemandeStage = () => {
                           <p><strong>CV:</strong> <a href={`http://localhost:8080/api/stagiaire/${demande.id}/cv`} download className="text-blue-500 hover:underline">Télécharger</a></p>
                           <p><strong>Assurance:</strong> <a href={`http://localhost:8080/api/stagiaire/${demande.id}/assurance`} download className="text-blue-500 hover:underline">Télécharger</a></p>
                           <p><strong>Attestation:</strong> <a href={`http://localhost:8080/api/stagiaire/${demande.id}/attestation`} download className="text-blue-500 hover:underline">Télécharger</a></p>
+                          <div className="mt-4">
+                            <label className="block text-gray-700">Date Début Souhaitée:</label>
+                            <input
+                              type="date"
+                              value={modifiedDates[demande.id]?.dateDebut || demande.dateDebut}
+                              onChange={(e) => handleDateChange(demande.id, 'dateDebut', e.target.value)}
+                              className="border border-gray-300 p-2 rounded"
+                            />
+                          </div>
+                          <div className="mt-4">
+                            <label className="block text-gray-700">Date Fin Souhaitée:</label>
+                            <input
+                              type="date"
+                              value={modifiedDates[demande.id]?.dateFin || demande.dateFin}
+                              onChange={(e) => handleDateChange(demande.id, 'dateFin', e.target.value)}
+                              className="border border-gray-300 p-2 rounded"
+                            />
+                          </div>
+                          <div className="mt-4 flex justify-end">
+                            <button
+                              className="bg-blue-500 text-white px-4 py-2 rounded flex items-center"
+                              onClick={() => handleSaveDates(demande.id)}
+                            >
+                              <FaSave className="mr-2" /> Enregistrer
+                            </button>
+                          </div>
                         </div>
                       </td>
                     </tr>

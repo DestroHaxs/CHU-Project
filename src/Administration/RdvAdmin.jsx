@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarAssistant from './NavbarAssistant';
-import { FaTrashAlt } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from 'react-modal';
 
@@ -22,8 +21,6 @@ function RdvAdmin() {
   const [updatedDate, setUpdatedDate] = useState('');
   const [updatedTime, setUpdatedTime] = useState('');
   const [showMessage, setShowMessage] = useState(false);
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [rdvToDelete, setRdvToDelete] = useState(null);
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
@@ -57,6 +54,8 @@ function RdvAdmin() {
         });
         setMessage('Le rendez-vous a été accepté et un email a été envoyé avec succès!');
         setShowMessage(true);
+        setRdvs(rdvs.filter(rdv => rdv.id !== selectedRdv.id)); // Remove the RDV after acceptance
+        setSelectedRdv(null); // Clear selected RDV
       } catch (error) {
         console.error('Error updating rdv:', error);
         setMessage('Erreur lors de l\'acceptation du rendez-vous.');
@@ -65,31 +64,24 @@ function RdvAdmin() {
     }
   };
 
-  const handleDeleteRdv = async () => {
-    if (rdvToDelete) {
+  const handleRefuseRdv = async () => {
+    if (selectedRdv) {
       try {
-        await axios.delete(`http://localhost:8080/api/rdv/${rdvToDelete.id}`);
-        setMessage('Le rendez-vous a été supprimé avec succès.');
+        await axios.post(`http://localhost:8080/api/rdv/${selectedRdv.id}/refuse`);
+        setMessage('Le rendez-vous a été refusé et un email a été envoyé avec succès!');
         setShowMessage(true);
-        setRdvs(rdvs.filter(rdv => rdv.id !== rdvToDelete.id));
-        setShowDeleteConfirmation(false);
+        setRdvs(rdvs.filter(rdv => rdv.id !== selectedRdv.id)); // Remove the RDV after refusal
+        setSelectedRdv(null); // Clear selected RDV
       } catch (error) {
-        console.error('Error deleting rdv:', error);
-        setMessage('Erreur lors de la suppression du rendez-vous.');
+        console.error('Error refusing rdv:', error);
+        setMessage('Erreur lors du refus du rendez-vous.');
         setShowMessage(true);
-        setShowDeleteConfirmation(false);
       }
     }
   };
 
-  const confirmDeleteRdv = (rdv) => {
-    setRdvToDelete(rdv);
-    setShowDeleteConfirmation(true);
-  };
-
   const closeModal = () => {
     setShowMessage(false);
-    setShowDeleteConfirmation(false);
   };
 
   return (
@@ -113,30 +105,6 @@ function RdvAdmin() {
             OK
           </button>
         </Modal>
-        <Modal
-          isOpen={showDeleteConfirmation}
-          onRequestClose={closeModal}
-          contentLabel="Confirmation Modal"
-          className="bg-white p-6 rounded-lg shadow-md mx-auto my-auto w-1/3"
-          overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
-        >
-          <h2 className="text-lg font-semibold mb-4">Confirmation</h2>
-          <p className="mb-4">Êtes-vous sûr de vouloir supprimer ce rendez-vous?</p>
-          <div className="flex justify-end space-x-4">
-            <button
-              onClick={handleDeleteRdv}
-              className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-colors duration-300"
-            >
-              Oui
-            </button>
-            <button
-              onClick={closeModal}
-              className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-300"
-            >
-              Non
-            </button>
-          </div>
-        </Modal>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rdvs.map((rdv) => (
             <motion.div
@@ -153,15 +121,6 @@ function RdvAdmin() {
                   onClick={() => handleShowDetails(rdv)}
                 >
                   Voir Détails
-                </button>
-                <button
-                  className="text-red-500 hover:text-red-700 transition-colors duration-300"
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent triggering the details view
-                    confirmDeleteRdv(rdv);
-                  }}
-                >
-                  <FaTrashAlt />
                 </button>
               </div>
             </motion.div>
@@ -209,12 +168,20 @@ function RdvAdmin() {
                   ))}
                 </select>
               </p>
-              <button
-                className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-300"
-                onClick={handleAcceptRdv}
-              >
-                Accepter
-              </button>
+              <div className="flex justify-end space-x-4 mt-4">
+                <button
+                  className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-300"
+                  onClick={handleAcceptRdv}
+                >
+                  Accepter
+                </button>
+                <button
+                  className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-colors duration-300"
+                  onClick={handleRefuseRdv}
+                >
+                  Refuser
+                </button>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

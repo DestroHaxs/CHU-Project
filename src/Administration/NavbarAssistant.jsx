@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import chuLogo from '../assets/chu_logo.png';
+import chuLogo from '../assets/chu_logo1.png';
 import { FaSearch, FaSignOutAlt } from 'react-icons/fa';
 
 function NavbarAssistant() {

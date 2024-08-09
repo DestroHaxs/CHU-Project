@@ -12,6 +12,8 @@ function Stage() {
   const [cin, setCin] = useState('');
   const [cne, setCne] = useState('');
   const [service, setService] = useState(''); // New state for service
+  const [dateDebut, setDateDebut] = useState(''); // New state for start date
+  const [dateFin, setDateFin] = useState(''); // New state for end date
   const [assurance, setAssurance] = useState(null);
   const [cv, setCv] = useState(null);
   const [attestation, setAttestation] = useState(null);
@@ -36,6 +38,8 @@ function Stage() {
     formData.append('cin', cin);
     formData.append('cne', cne);
     formData.append('service', service); // Append service
+    formData.append('dateDebut', dateDebut); // Append start date
+    formData.append('dateFin', dateFin); // Append end date
     formData.append('assurance', assurance);
     formData.append('cv', cv);
     formData.append('attestation', attestation);
@@ -50,7 +54,7 @@ function Stage() {
       setMessage('Votre demande a été envoyée avec succès.');
     } catch (error) {
       console.error('Error adding stagiaire:', error);
-      setMessage('Il y a eu une erreur lors de l\'envoi de votre demande.');
+      setMessage("Il y a eu une erreur lors de l'envoi de votre demande.");
     }
   };
 
@@ -161,6 +165,32 @@ function Stage() {
                 <option key={index} value={service}>{service}</option>
               ))}
             </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="dateDebut">
+              Date Début
+            </label>
+            <input
+              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="date"
+              id="dateDebut"
+              value={dateDebut}
+              onChange={(e) => setDateDebut(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="dateFin">
+              Date Fin
+            </label>
+            <input
+              className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="date"
+              id="dateFin"
+              value={dateFin}
+              onChange={(e) => setDateFin(e.target.value)}
+              required
+            />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="assurance">

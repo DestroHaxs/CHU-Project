@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import chuLogo from './assets/chu_logo.png';
+import chuLogo from './assets/chu_logo1.png';
 import { FaUserCircle, FaSearch } from 'react-icons/fa';
 
 const Navbar = forwardRef((props, ref) => {
