@@ -24,7 +24,7 @@ const AddUser = () => {
         specialite: role === 'ASSISTANT' ? specialite : null,
       };
       await axios.post('http://localhost:8080/api/users', newUser);
-      setPopupMessage('User added successfully');
+      setPopupMessage('Utilisateur ajouté avec succès');
       setShowPopup(true);
       // Clear form fields
       setName('');
@@ -47,7 +47,7 @@ const AddUser = () => {
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700">Name</label>
+              <label className="block text-gray-700">Nom</label>
               <input
                 type="text"
                 className="w-full px-3 py-2 border rounded"

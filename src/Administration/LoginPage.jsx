@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, NavLink } from 'react-router-dom';
 import loginBg from '../assets/Loginbackground.jpg';
-import chuLogo from '../assets/chu_logo.png';
+import chuLogo from '../assets/chu_logo1.png';
 import { FaHome } from 'react-icons/fa';
 import '../index.css';
 

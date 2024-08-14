@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarAdmin from './NavbarAdmin';
-import { FaCheck, FaTimes, FaSave } from 'react-icons/fa'; // Imported FaSave
+import { FaCheck, FaTimes, FaSave } from 'react-icons/fa';
 
 const DemandeStage = () => {
   const [demandes, setDemandes] = useState([]);
@@ -11,7 +11,7 @@ const DemandeStage = () => {
   const [actionId, setActionId] = useState(null);
   const [popupMessage, setPopupMessage] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const [modifiedDates, setModifiedDates] = useState({}); // New state for modified dates
+  const [modifiedDates, setModifiedDates] = useState({});
 
   useEffect(() => {
     const fetchDemandes = async () => {
@@ -49,7 +49,7 @@ const DemandeStage = () => {
     }));
   };
 
-  const handleSaveDates = async (id) => { // New function to save dates
+  const handleSaveDates = async (id) => {
     try {
       const { dateDebut, dateFin } = modifiedDates[id] || {};
       await axios.put(`http://localhost:8080/api/stagiaire/${id}/update-dates`, {
@@ -104,6 +104,7 @@ const DemandeStage = () => {
                 <th className="py-2 px-4 border-b">Téléphone</th>
                 <th className="py-2 px-4 border-b">CIN</th>
                 <th className="py-2 px-4 border-b">CNE</th>
+                <th className="py-2 px-4 border-b">Service</th> {/* New Service Column */}
                 <th className="py-2 px-4 border-b">Actions</th>
               </tr>
             </thead>
@@ -117,6 +118,7 @@ const DemandeStage = () => {
                     <td className="py-2 px-4 border-b">{demande.phone}</td>
                     <td className="py-2 px-4 border-b">{demande.cin}</td>
                     <td className="py-2 px-4 border-b">{demande.cne}</td>
+                    <td className="py-2 px-4 border-b">{demande.service}</td> {/* Display Service */}
                     <td className="py-2 px-4 border-b flex items-center space-x-4">
                       <button
                         className="text-blue-500 hover:underline"
@@ -140,11 +142,12 @@ const DemandeStage = () => {
                   </tr>
                   {visibleDetails[demande.id] && (
                     <tr className="text-left">
-                      <td colSpan="7" className="py-2 px-4 border-b">
+                      <td colSpan="8" className="py-2 px-4 border-b">
                         <div className="bg-gray-100 p-4 rounded-lg">
                           <p><strong>CV:</strong> <a href={`http://localhost:8080/api/stagiaire/${demande.id}/cv`} download className="text-blue-500 hover:underline">Télécharger</a></p>
                           <p><strong>Assurance:</strong> <a href={`http://localhost:8080/api/stagiaire/${demande.id}/assurance`} download className="text-blue-500 hover:underline">Télécharger</a></p>
                           <p><strong>Attestation:</strong> <a href={`http://localhost:8080/api/stagiaire/${demande.id}/attestation`} download className="text-blue-500 hover:underline">Télécharger</a></p>
+                          <p><strong>Service:</strong> {demande.service}</p> {/* Display Service in Details */}
                           <div className="mt-4">
                             <label className="block text-gray-700">Date Début Souhaitée:</label>
                             <input
