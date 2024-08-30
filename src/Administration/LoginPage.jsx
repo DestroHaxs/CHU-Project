@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, NavLink } from 'react-router-dom';
 import loginBg from '../assets/Loginbackground.jpg';
-import chuLogo from '../assets/chu_logo1.png';
+import chuLogo from '../assets/logo_accueil.png';
 import { FaHome } from 'react-icons/fa';
 import '../index.css';
 
@@ -60,16 +60,11 @@ function LoginPage() {
     <div className={`min-h-screen bg-cover bg-center flex items-center justify-center ${isLoading ? 'loading' : ''}`} style={{ backgroundImage: `url(${loginBg})` }}>
       <div className="bg-blue-900 bg-opacity-80 p-8 rounded-lg shadow-lg max-w-3xl w-full mt-16 flex items-center justify-between transition-all duration-500 ease-in-out">
         <div className="flex items-center justify-center mb-6 mr-8">
-          <img src={chuLogo} alt="Logo CHU Oujda" className="h-24 mr-3 mt-2 filter-white" />
-          <div className="text-left">
-            <div className="text-xl text-lg font-bold leading-none text-white">OUJDA</div>
-            <div className="border-t border-white my-1"></div>
-            <div className="text-xs font-medium leading-none text-white">CENTRE HOSPITALIER UNIVERSITAIRE</div>
-          </div>
+          <img src={chuLogo} alt="Logo CHU Oujda" className="h-24 mr-2 mt-2 filter-white" />
         </div>
         <div className="border-l-2 border-gray-300 h-32 mx-4"></div>
         <div className="w-full max-w-xs">
-          <h2 className="text-2xl font-bold mb-4 text-center text-white">Login</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center text-white">Page de connexion</h2>
           <form onSubmit={handleLogin}>
             <div className="mb-4">
               <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
@@ -86,7 +81,7 @@ function LoginPage() {
             </div>
             <div className="mb-6">
               <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
-                Password
+                Mot de passe
               </label>
               <input
                 type="password"
@@ -106,7 +101,7 @@ function LoginPage() {
                 onChange={() => setRememberMe(!rememberMe)}
                 className="custom-checkbox"
               />
-              <label htmlFor="remember_me" className="ml-2 text-white text-sm">Remember me</label>
+              <label htmlFor="remember_me" className="ml-2 text-white text-sm">Se souvenir de moi</label>
             </div>
             {error && (
               <div className="mb-4 text-red-500 text-sm">
@@ -119,10 +114,10 @@ function LoginPage() {
                 className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-transform duration-500 ${isLoading ? 'transform scale-110' : ''}`}
                 disabled={isLoading}
               >
-                {isLoading ? <div className="spinner"></div> : 'Login'}
+                {isLoading ? <div className="spinner"></div> : 'Connexion'}
               </button>
               <NavLink to="/" className="text-blue-500 hover:underline flex items-center ml-4">
-                <FaHome className="mr-1" /> Back to Home
+                <FaHome className="mr-1" /> Retour à l'accueil
               </NavLink>
             </div>
           </form>

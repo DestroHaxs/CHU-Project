@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import chuLogo from '../assets/chu_logo1.png';
+import chuLogo from '../assets/logo_accueil.png';
 import { FaSearch, FaSignOutAlt, FaCaretDown } from 'react-icons/fa';
 
 function NavbarAdmin() {
@@ -73,11 +73,6 @@ function NavbarAdmin() {
               alt="Logo CHU Oujda"
               className="h-16 mr-4 filter-white"
             />
-            <div className="text-left">
-              <div className="text-lg font-bold leading-none">OUJDA</div>
-              <div className="border-t border-white my-1"></div>
-              <div className="text-xs font-medium leading-none">CENTRE HOSPITALIER UNIVERSITAIRE</div>
-            </div>
           </div>
           <nav className="flex items-center ml-auto relative z-50 space-x-12">
             <NavLink

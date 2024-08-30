@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import chuLogo from './assets/chu_logo1.png';
+import chuLogo from './assets/logo_accueil.png';
 import { FaUserCircle, FaSearch } from 'react-icons/fa';
 
 const Navbar = forwardRef((props, ref) => {
@@ -68,11 +68,6 @@ const Navbar = forwardRef((props, ref) => {
               alt="Logo CHU Oujda"
               className="h-16 mr-2 transform transition-transform duration-300 ease-in-out hover:scale-110"
             />
-            <div className="text-left">
-              <div className="text-lg font-bold leading-none">OUJDA</div>
-              <div className="border-t border-blue-900 my-1"></div>
-              <div className="text-xs font-medium leading-none">CENTRE HOSPITALIER UNIVERSITAIRE</div>
-            </div>
           </NavLink>
         </div>
         <nav className="flex items-center ml-auto relative z-50">
